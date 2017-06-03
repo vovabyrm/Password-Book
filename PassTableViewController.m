@@ -91,7 +91,6 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     Password *password = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [self configureCell:cell withEvent:password];
-    //cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f", 1.2];
     return cell;
 }
 
@@ -120,7 +119,6 @@
 
 - (void)configureCell:(UITableViewCell *)cell withEvent:(Password *)pass {
     cell.textLabel.text = pass.name;
-    //cell.detailTextLabel.text = [NSString stringWithFormat:@"%f",debtor.value];
 }
 - (IBAction)copyPass:(id)sender {
     if([self.tableView indexPathForSelectedRow])

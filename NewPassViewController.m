@@ -20,9 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.nameField becomeFirstResponder];
-    // self.tabBarController.tabBar.back
-    //[self.nameField.delegate self];
-    //[self.passField.delegate self];
     if(self.data)
     {
         self.nameField.text = [NSString stringWithFormat:@"%@", self.data.name];//self.detailItem.value;

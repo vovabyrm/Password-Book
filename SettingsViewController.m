@@ -130,7 +130,6 @@
         NewCodeController* vc = (NewCodeController *)[segue destinationViewController];
         vc.managedObjectContext = self.managedObjectContext;
         vc.managedObjectModel = self.managedObjectModel;
-        //vc.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:nil];
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

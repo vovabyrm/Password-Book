@@ -143,8 +143,6 @@
     if(self.complet == 4)
     {
         if([self.hash1 isEqualToString:@""]){
-            //self.indicator1.image = [UIImage imageNamed:@"passiveDot.png"];
-            //self.indicator2.image = [UIImage imageNamed:@"passiveDot.png"];
             self.indicator4.image = [UIImage imageNamed:@"activeDot.png"];
             self.hash1 = [self.currentPass MD5String];
             self.currentPass = @"";
@@ -217,8 +215,6 @@
                 [defaults setObject:domainState forKey:@"domainTouchID"];
                 [defaults synchronize];
                 
-                
-               // [self performSegueWithIdentifier:nil sender:self];
                 [self dismissViewControllerAnimated:YES completion:nil];
             }else{
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"

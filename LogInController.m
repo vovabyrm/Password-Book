@@ -54,9 +54,6 @@
     [super viewDidLoad];
     self.touchIDbutton.hidden = true;
     self.backspaceButton.hidden = true;
-    //self.password = @"5432";
-    //self.password = [self.password MD5String];
-    //NSLog(@"%@",self.password);
     
     LAContext* context = [[LAContext alloc] init];
     self.bioContext = context;
@@ -74,11 +71,7 @@
     NSError *error = nil;
     NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
     if (![results firstObject]) {
-        //NSLog(@"Error fetching Employee objects: %@\n%@", [error localizedDescription], [error userInfo]);
-        //NewCodeController* controller = [[NewCodeController alloc] init];
-        //[self presentViewController:controller animated:NO completion:^{
-            //
-        //}];
+        NSLog(@"No objects");
     }
     Settings* settings = [results firstObject];
     self.settingsParams = settings;
@@ -109,11 +102,7 @@
                                                       cancelButtonTitle:@"OK"
                                                       otherButtonTitles:nil, nil];
             [alertView show];
-            // authorized = FALSE;
-            // return NO;
-            // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
         });
-        //message = @"domain state was changed!";
     }
     }
 }
@@ -123,7 +112,7 @@
     __block BOOL authorized;
     authorized = FALSE;
     if ([identifier isEqualToString:@"TEST"]) {
-            [self touchID];
+        [self touchID];
     } else if ([identifier isEqualToString:@"LogIn"])
         authorized = TRUE;
     return authorized;
@@ -141,8 +130,6 @@
                                 if (success) {
                                     dispatch_async(dispatch_get_main_queue(), ^{
                                         [self performSegueWithIdentifier:@"TEST" sender:nil];
-                                        //self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
-                                        //[super viewWillAppear:animated];
                                     });
                                 } else {
                                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -174,22 +161,12 @@
                                             self.touchIDtestButton.hidden = true;
                                         }
                                         
-                                        
-                                       // authorized = FALSE;
-                                        // return NO;
-                                        // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
                                     });
                                 }
                             }];
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString* description = [[NSString alloc] init];
-            /*if([authError.code isEqual:LAErrorPasscodeNotSet ])
-                description = @"Set passcode and enroll TouchID";
-            else if([authError isEqual:LAErrorTouchIDNotEnrolled])
-                description = @"Enroll TouchID";
-            else if ([authError isEqual:LAErrorTouchIDLockout])
-                description = @"Too many failed Touch ID attempts";*/
             switch (authError.code) {
                 case LAErrorPasscodeNotSet:
                     description = @"Set passcode and enroll TouchID";
@@ -212,8 +189,6 @@
                                                       otherButtonTitles:nil, nil];
             [alertView show];
             self.touchIDtestButton.hidden = true;
-            //authorized = FALSE;
-            // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
         });
     }
 
@@ -237,62 +212,52 @@
 #pragma mark - Buttons
 
 - (IBAction)numb1:(UIButton *)sender {
-    //_currentPass = [NSString stringWithFormat:@"%@%d",self.currentPass,1];
     _currentPass = [self.currentPass stringByAppendingString:@"1"];
     self.complet++;
     [self checkForComplet];
     
 }
 - (IBAction)numb2:(UIButton *)sender {
-    //_currentPass = [NSString stringWithFormat:@"%@%d",self.currentPass,2];
     _currentPass = [self.currentPass stringByAppendingString:@"2"];
     self.complet++;
     [self checkForComplet];
 }
 - (IBAction)numb3:(UIButton *)sender {
-    //_currentPass = [NSString stringWithFormat:@"%@%d",self.currentPass,3];
     _currentPass = [self.currentPass stringByAppendingString:@"3"];
     self.complet++;
     [self checkForComplet];
 }
 - (IBAction)numb4:(id)sender {
-    //_currentPass = [NSString stringWithFormat:@"%@%d",self.currentPass,4];
     _currentPass = [self.currentPass stringByAppendingString:@"4"];
     self.complet++;
     [self checkForComplet];
 }
 - (IBAction)numb5:(UIButton *)sender {
-    //_currentPass = [NSString stringWithFormat:@"%@%d",self.currentPass,5];
     self.currentPass = [self.currentPass stringByAppendingString:@"5"];
     self.complet++;
     [self checkForComplet];
 }
 - (IBAction)numb6:(UIButton *)sender {
-    //_currentPass = [NSString stringWithFormat:@"%@%d",self.currentPass,6];
     _currentPass = [self.currentPass stringByAppendingString:@"6"];
     self.complet++;
     [self checkForComplet];
 }
 - (IBAction)numb7:(UIButton *)sender {
-    //_currentPass = [NSString stringWithFormat:@"%@%d",self.currentPass,7];
     _currentPass = [self.currentPass stringByAppendingString:@"7"];
     self.complet++;
     [self checkForComplet];
 }
 - (IBAction)numb8:(UIButton *)sender {
-    //_currentPass = [NSString stringWithFormat:@"%@%d",self.currentPass,8];
     _currentPass = [self.currentPass stringByAppendingString:@"8"];
     self.complet++;
     [self checkForComplet];
 }
 - (IBAction)numb9:(UIButton *)sender {
-    //_currentPass = [NSString stringWithFormat:@"%@%d",self.currentPass,9];
     _currentPass = [self.currentPass stringByAppendingString:@"9"];
     self.complet++;
     [self checkForComplet];
 }
 - (IBAction)numb0:(UIButton *)sender {
-    //_currentPass = [NSString stringWithFormat:@"%@%d",self.currentPass,0];
     _currentPass = [self.currentPass stringByAppendingString:@"0"];
     self.complet++;
     [self checkForComplet];
@@ -346,7 +311,7 @@
             self.indicator1.image = [UIImage imageNamed:@"passiveDot.png"];
             self.indicator2.image = [UIImage imageNamed:@"passiveDot.png"];
             self.indicator3.image = [UIImage imageNamed:@"passiveDot.png"];
-            //self.indicator4.image = [UIImage imageNamed:@"passiveDot.png"];
+            self.indicator4.image = [UIImage imageNamed:@"passiveDot.png"];
             self.currentPass = @"";
             self.complet = 0;
             self.backspaceButton.hidden = true;
